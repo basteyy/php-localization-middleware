@@ -14,7 +14,8 @@ composer require basteyy/php-localization-middleware
 
 To use this middleware in your PHP application, follow these steps:
 
-1. Create an instance of the LocalizationMiddleware class with your desired configuration and add it as middleware. For example:
+Create an instance of the LocalizationMiddleware class with your desired configuration and add it as middleware. For example:
+
 ```php
     $app->add(new \basteyy\LocalizationMiddleware\LocalizationMiddleware(
         default_language: 'de',                     // Default language
