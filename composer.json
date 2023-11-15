@@ -1,0 +1,34 @@
+{
+  "name": "basteyy/langugage-middleware",
+  "description": "A middleware for handling language in your application",
+  "type": "project",
+  "license": "ISC",
+  "keywords": [
+    "language",
+    "middleware",
+    "php"
+  ],
+  "authors": [
+    {
+      "name": "Sebastian Eiweleit",
+      "email": "sebastian@xzit.online",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [
+    ],
+    "psr-4": {
+      "basteyy\\LocalizationMiddleware\\" : "src/"
+    }
+  },
+  "require": {
+    "php": "^8.0 || ^8.1 || ^8.2 || ^8.3",
+    "psr/http-message": ">=2.0",
+    "psr/http-server-middleware": ">=1.0.1"
+  },
+  "scripts": {
+    "post-update-cmd": [
+    ]
+  }
+}
