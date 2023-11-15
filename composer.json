@@ -1,5 +1,5 @@
 {
-  "name": "basteyy/langugage-middleware",
+  "name": "basteyy/php-localization-middleware",
   "description": "A middleware for handling language in your application",
   "type": "project",
   "license": "ISC",
