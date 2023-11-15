@@ -7,7 +7,7 @@ A PHP middleware for handling localization and language preferences in web appli
 You can install this package via Composer. Run the following command:
 
 ```bash
-composer require basteyy/langugage-middleware
+composer require basteyy/php-localization-middleware
 ```
 
 ## Usage
