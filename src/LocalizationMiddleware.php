@@ -35,6 +35,8 @@ class LocalizationMiddleware implements MiddlewareInterface {
     /** @var bool $browser_overwrite_url Overwrite the url with the browser language */
     private bool $browser_overwrite_url;
 
+    private bool $has_url_language = false;
+
     public function __construct(?string $default_language = null,
                                 ?array $available_languages = null,
                                 ?bool $patch_requested_url = true,
@@ -98,6 +100,8 @@ class LocalizationMiddleware implements MiddlewareInterface {
         if ('/' === substr($url, 3, 1)  ) {
             $lang = substr($url, 1, 2);
 
+            $this->has_url_language = true;
+
             if (in_array($lang, $this->available_languages)) {
                 return substr($url, 1, 2);
             }
@@ -149,9 +153,18 @@ class LocalizationMiddleware implements MiddlewareInterface {
         $lang = $this->determineLanguage($request);
         $request = $request->withAttribute($this->attribute_name, $lang);
 
-        if ($this->patch_requested_url && (!$this->patch_only_exactly_match || str_starts_with($request->getUri()->getPath(), '/' . $lang . '/'))) {
+        if ($this->patch_requested_url && $this->has_url_language) {
+
+            // Exact patch?
+            if ($this->patch_only_exactly_match) {
+                if(str_starts_with($request->getUri()->getPath(), '/' . $lang . '/')) {
+                    $url = substr($request->getUri()->getPath(), 3);
+                }
+            } else {
+                $url = substr($request->getUri()->getPath(), 3);
+            }
+
             // new url for thr request
-            $url = substr($request->getUri()->getPath(), 3);
             $uri = $request->getUri()->withPath($url);
             $request = $request->withUri($uri);
         }
