@@ -83,6 +83,10 @@ class LocalizationMiddleware implements MiddlewareInterface {
     private function getPreferredLanguage(RequestInterface $request): array
     {
         $acceptLanguageHeader = $request->getHeader('Accept-Language');
+        
+        if (empty($acceptLanguageHeader)) {
+            return [];
+        }
 
         return array_map(function ($lang) {
             return substr($lang, 0, 2);
