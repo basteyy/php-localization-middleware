@@ -169,7 +169,7 @@ class LocalizationMiddleware implements MiddlewareInterface {
             }
 
             // new url for thr request
-            $uri = $request->getUri()->withPath($url);
+            $uri = $request->getUri()->withPath($url ?? null);
             $request = $request->withUri($uri);
         }
 
